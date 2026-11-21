@@ -1,0 +1,84 @@
+@page
+@model Sistema_Logistico.Pages.PedidoPages.CreateModel
+@{
+    ViewData["Title"] = "Novo Pedido";
+}
+
+<div class="container-fluid px-0">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-7">
+            
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h3 class="fw-bold text-dark mb-1">Registrar Pedido</h3>
+                    <p class="text-muted small mb-0">Preencha os detalhes da ordem de pedido.</p>
+                </div>
+                <a asp-page="Index" class="btn-mono-secondary d-inline-flex align-items-center gap-2">
+                    <i class="bi bi-arrow-left"></i> Voltar para Lista
+                </a>
+            </div>
+
+            <div class="form-card">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-dark py-2 small" role="alert"></div>
+
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <label asp-for="Pedido.Cliente" class="form-label">Cliente <span class="text-danger">*</span></label>
+                            <input asp-for="Pedido.Cliente" class="form-control" placeholder="Nome do cliente ou empresa" />
+                            <span asp-validation-for="Pedido.Cliente" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label asp-for="Pedido.DataPedido" class="form-label">Data do Pedido <span class="text-danger">*</span></label>
+                            <input asp-for="Pedido.DataPedido" class="form-control" />
+                            <span asp-validation-for="Pedido.DataPedido" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label asp-for="Pedido.Status" class="form-label">Status <span class="text-danger">*</span></label>
+                            <select asp-for="Pedido.Status" class="form-select">
+                                <option value="Pendente">Pendente</option>
+                                <option value="Processando">Processando</option>
+                                <option value="Enviado">Enviado</option>
+                                <option value="Entregue">Entregue</option>
+                            </select>
+                            <span asp-validation-for="Pedido.Status" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label asp-for="Pedido.ValorTotal" class="form-label">Valor Total</label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-light border-end-0 text-muted">R$</span>
+                                <input asp-for="Pedido.ValorTotal" class="form-control border-start-0" placeholder="0,00" />
+                            </div>
+                            <span asp-validation-for="Pedido.ValorTotal" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label asp-for="Pedido.Observacao" class="form-label">Observações</label>
+                            <textarea asp-for="Pedido.Observacao" class="form-control" rows="3" placeholder="Informações adicionais sobre o pedido (opcional)..."></textarea>
+                            <span asp-validation-for="Pedido.Observacao" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <hr class="my-4 text-muted opacity-25">
+
+                    <div class="d-flex justify-content-end gap-2">
+                        <a asp-page="Index" class="btn-mono-secondary">Cancelar</a>
+                        <button type="submit" class="btn-mono-primary d-inline-flex align-items-center gap-2">
+                            <i class="bi bi-check-lg"></i> Salvar Pedido
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

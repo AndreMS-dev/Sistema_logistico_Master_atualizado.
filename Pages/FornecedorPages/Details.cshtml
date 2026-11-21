@@ -1,0 +1,51 @@
+@page
+@model Sistema_Logistico.Pages.FornecedorPages.DetailsModel
+@{
+    ViewData["Title"] = "Detalhes do Fornecedor";
+}
+
+<div class="container-fluid px-0">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-7">
+            
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h3 class="fw-bold text-dark mb-1">Detalhes do Fornecedor</h3>
+                    <p class="text-muted small mb-0">Informações de identificação e contato do parceiro.</p>
+                </div>
+                <a asp-page="./Index" class="btn-mono-secondary d-inline-flex align-items-center gap-2">
+                    <i class="bi bi-arrow-left"></i> Voltar para Lista
+                </a>
+            </div>
+
+            <div class="form-card">
+                <div class="row g-4">
+                    <div class="col-md-12">
+                        <span class="text-muted small text-uppercase fw-semibold d-block mb-1">Nome / Razão Social</span>
+                        <span class="fs-5 fw-bold text-dark">@Model.Fornecedor.Nome</span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <span class="text-muted small text-uppercase fw-semibold d-block mb-1">Telefone</span>
+                        <span class="fw-medium text-dark">@(string.IsNullOrWhiteSpace(Model.Fornecedor.Telefone) ? "Não informado" : Model.Fornecedor.Telefone)</span>
+                    </div>
+
+                    <div class="col-md-6">
+                        <span class="text-muted small text-uppercase fw-semibold d-block mb-1">E-mail de Contato</span>
+                        <span class="fw-medium text-dark">@(string.IsNullOrWhiteSpace(Model.Fornecedor.Email) ? "Não informado" : Model.Fornecedor.Email)</span>
+                    </div>
+                </div>
+
+                <hr class="my-4 text-muted opacity-25">
+
+                <div class="d-flex justify-content-end gap-2">
+                    <a asp-page="./Index" class="btn-mono-secondary">Voltar</a>
+                    <a asp-page="./Edit" asp-route-id="@Model.Fornecedor.Id" class="btn-mono-primary d-inline-flex align-items-center gap-2">
+                        <i class="bi bi-pencil"></i> Editar Fornecedor
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

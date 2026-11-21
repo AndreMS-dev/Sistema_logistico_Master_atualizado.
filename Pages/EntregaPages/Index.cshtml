@@ -1,0 +1,53 @@
+@page
+@model Sistema_Logistico.Pages.EntregaPages.IndexModel
+@{
+    ViewData["Title"] = "Entregas";
+}
+
+<div class="container-fluid px-0">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h3 class="fw-bold text-dark mb-1">Controle de Entregas</h3>
+            <p class="text-muted small mb-0">Acompanhe os destinos agendados e o andamento das rotas.</p>
+        </div>
+        <a asp-page="Create" class="btn-mono-primary d-inline-flex align-items-center gap-2">
+            <i class="bi bi-plus-lg"></i> Nova Entrega
+        </a>
+    </div>
+
+    <div class="table-card">
+        <div class="table-responsive">
+            <table class="table table-hover align-middle mb-0">
+                <thead>
+                    <tr>
+                        <th class="ps-4">Destino</th>
+                        <th>Data Prevista</th>
+                        <th>Status</th>
+                        <th class="text-end pe-4">Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Entrega)
+                    {
+                        <tr>
+                            <td class="ps-4 fw-semibold text-dark">@item.Destino</td>
+                            <td class="text-secondary">@item.DataEntrega.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td>
+                                <span class="badge @(item.Status == "Entregue" ? "bg-dark text-white" : "bg-light text-dark border")">
+                                    @item.Status
+                                </span>
+                            </td>
+                            <td class="text-end pe-4">
+                                <div class="btn-group btn-group-sm" role="group">
+                                    <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-outline-dark" title="Editar"><i class="bi bi-pencil"></i></a>
+                                    <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-outline-secondary" title="Detalhes"><i class="bi bi-eye"></i></a>
+                                    <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-dark" title="Excluir"><i class="bi bi-trash"></i></a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

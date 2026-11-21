@@ -1,0 +1,64 @@
+@page
+@model Sistema_Logistico.Pages.FornecedorPages.CreateModel
+@{
+    ViewData["Title"] = "Novo Fornecedor";
+}
+
+<div class="container-fluid px-0">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-7">
+            
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h3 class="fw-bold text-dark mb-1">Cadastrar Fornecedor</h3>
+                    <p class="text-muted small mb-0">Adicione um novo parceiro comercial à base logística.</p>
+                </div>
+                <a asp-page="Index" class="btn-mono-secondary d-inline-flex align-items-center gap-2">
+                    <i class="bi bi-arrow-left"></i> Voltar para Lista
+                </a>
+            </div>
+
+            <div class="form-card">
+                <form method="post">
+                    <div asp-validation-summary="ModelOnly" class="alert alert-dark py-2 small" role="alert"></div>
+
+                    <div class="row g-3">
+                        <div class="col-md-12">
+                            <label asp-for="Fornecedor.Nome" class="form-label">Nome / Razão Social <span class="text-danger">*</span></label>
+                            <input asp-for="Fornecedor.Nome" class="form-control" placeholder="Ex: Transportadora e Suprimentos Ltda" />
+                            <span asp-validation-for="Fornecedor.Nome" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="Fornecedor.Telefone" class="form-label">Telefone</label>
+                            <input asp-for="Fornecedor.Telefone" class="form-control" placeholder="(11) 99999-9999" />
+                            <span asp-validation-for="Fornecedor.Telefone" class="text-danger small"></span>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label asp-for="Fornecedor.Email" class="form-label">E-mail de Contato</label>
+                            <input asp-for="Fornecedor.Email" type="email" class="form-control" placeholder="contato@fornecedor.com.br" />
+                            <span asp-validation-for="Fornecedor.Email" class="text-danger small"></span>
+                        </div>
+                    </div>
+
+                    <hr class="my-4 text-muted opacity-25">
+
+                    <div class="d-flex justify-content-end gap-2">
+                        <a asp-page="Index" class="btn-mono-secondary">Cancelar</a>
+                        <button type="submit" class="btn-mono-primary d-inline-flex align-items-center gap-2">
+                            <i class="bi bi-check-lg"></i> Salvar Fornecedor
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

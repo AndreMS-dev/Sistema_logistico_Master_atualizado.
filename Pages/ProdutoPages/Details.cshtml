@@ -1,0 +1,56 @@
+@page
+@model Sistema_Logistico.Pages.ProdutoPages.DetailsModel
+@{
+    ViewData["Title"] = "Detalhes do Produto";
+}
+
+<div class="container-fluid px-0">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-xl-7">
+            
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h3 class="fw-bold text-dark mb-1">Detalhes do Produto</h3>
+                    <p class="text-muted small mb-0">Visualização completa das informações cadastradas.</p>
+                </div>
+                <a asp-page="./Index" class="btn-mono-secondary d-inline-flex align-items-center gap-2">
+                    <i class="bi bi-arrow-left"></i> Voltar para Lista
+                </a>
+            </div>
+
+            <div class="form-card">
+                <div class="row g-4">
+                    <div class="col-md-12">
+                        <span class="text-muted small text-uppercase fw-semibold d-block mb-1">Nome do Produto</span>
+                        <span class="fs-5 fw-bold text-dark">@Model.Produto.Nome</span>
+                    </div>
+
+                    <div class="col-md-4">
+                        <span class="text-muted small text-uppercase fw-semibold d-block mb-1">Categoria</span>
+                        <span class="badge bg-light text-dark border px-3 py-2">@Model.Produto.Categoria</span>
+                    </div>
+
+                    <div class="col-md-4">
+                        <span class="text-muted small text-uppercase fw-semibold d-block mb-1">Qtd. em Estoque</span>
+                        <span class="fw-semibold text-dark">@Model.Produto.QuantidadeEstoque unidades</span>
+                    </div>
+
+                    <div class="col-md-4">
+                        <span class="text-muted small text-uppercase fw-semibold d-block mb-1">Preço Unitário</span>
+                        <span class="fw-semibold text-dark">@Model.Produto.Preco.ToString("C")</span>
+                    </div>
+                </div>
+
+                <hr class="my-4 text-muted opacity-25">
+
+                <div class="d-flex justify-content-end gap-2">
+                    <a asp-page="./Index" class="btn-mono-secondary">Voltar</a>
+                    <a asp-page="./Edit" asp-route-id="@Model.Produto.Id" class="btn-mono-primary d-inline-flex align-items-center gap-2">
+                        <i class="bi bi-pencil"></i> Editar Produto
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

@@ -1,0 +1,127 @@
+﻿@page
+@model Sistema_Logistico.Pages.Relatorios.IndexModel
+@{
+    ViewData["Title"] = "Relatórios";
+}
+
+<div class="container-fluid px-0">
+    <!-- Cabeçalho da Seção -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold text-dark mb-1">Relatório Gerencial</h2>
+            <p class="text-muted mb-0">Visão geral consolidada da operação logística e movimentação de estoque.</p>
+        </div>
+        <button onclick="window.print()" class="btn btn-dark px-3 py-2">
+            <i class="bi bi-printer me-2"></i> Imprimir Relatório
+        </button>
+    </div>
+
+    <!-- Grid de Cards (5 colunas em telas grandes) -->
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-xl-5 g-3 mb-4">
+        
+        <!-- Card 1: Produtos -->
+        <div class="col">
+            <div class="kpi-card p-3 h-100 d-flex flex-column justify-content-between">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <span class="text-secondary fw-semibold small text-uppercase">Produtos</span>
+                    <div class="kpi-icon-box">
+                        <i class="bi bi-box-seam"></i>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="fw-bold mb-0 text-dark">@Model.TotalProdutos</h2>
+                    <span class="text-muted" style="font-size: 0.8rem;">Itens cadastrados</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2: Fornecedores -->
+        <div class="col">
+            <div class="kpi-card p-3 h-100 d-flex flex-column justify-content-between">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <span class="text-secondary fw-semibold small text-uppercase">Fornecedores</span>
+                    <div class="kpi-icon-box">
+                        <i class="bi bi-building"></i>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="fw-bold mb-0 text-dark">@Model.TotalFornecedores</h2>
+                    <span class="text-muted" style="font-size: 0.8rem;">Parceiros ativos</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3: Pedidos -->
+        <div class="col">
+            <div class="kpi-card p-3 h-100 d-flex flex-column justify-content-between">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <span class="text-secondary fw-semibold small text-uppercase">Pedidos</span>
+                    <div class="kpi-icon-box">
+                        <i class="bi bi-clipboard-check"></i>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="fw-bold mb-0 text-dark">@Model.TotalPedidos</h2>
+                    <span class="text-muted" style="font-size: 0.8rem;">Ordens registradas</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4: Entregas -->
+        <div class="col">
+            <div class="kpi-card p-3 h-100 d-flex flex-column justify-content-between">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <span class="text-secondary fw-semibold small text-uppercase">Entregas</span>
+                    <div class="kpi-icon-box">
+                        <i class="bi bi-truck"></i>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="fw-bold mb-0 text-dark">@Model.TotalEntregas</h2>
+                    <span class="text-muted" style="font-size: 0.8rem;">Em rota / concluídas</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 5: Estoque Crítico (Destaque em Preto) -->
+        <div class="col">
+            <div class="kpi-card kpi-card-critical p-3 h-100 d-flex flex-column justify-content-between">
+                <div class="d-flex justify-content-between align-items-start mb-3">
+                    <span class="text-light fw-semibold small text-uppercase">Estoque Crítico</span>
+                    <div class="kpi-icon-box">
+                        <i class="bi bi-exclamation-triangle"></i>
+                    </div>
+                </div>
+                <div>
+                    <h2 class="fw-bold mb-0 text-white">@Model.EstoqueCritico</h2>
+                    <span class="text-secondary" style="font-size: 0.8rem;">Reposição urgente</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Área Inferior: Resumo Rápido / Atalhos -->
+    <div class="table-card p-4">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold mb-0">Acesso Rápido Operacional</h5>
+        </div>
+        <div class="row g-3">
+            <div class="col-md-4">
+                <a asp-page="/ProdutoPages/Create" class="btn btn-outline-dark w-100 py-3 d-flex align-items-center justify-content-center gap-2">
+                    <i class="bi bi-plus-circle"></i> Novo Produto
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a asp-page="/PedidoPages/Create" class="btn btn-outline-dark w-100 py-3 d-flex align-items-center justify-content-center gap-2">
+                    <i class="bi bi-plus-circle"></i> Registrar Pedido
+                </a>
+            </div>
+            <div class="col-md-4">
+                <a asp-page="/EntregaPages/Create" class="btn btn-outline-dark w-100 py-3 d-flex align-items-center justify-content-center gap-2">
+                    <i class="bi bi-plus-circle"></i> Nova Entrega
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
